@@ -1,8 +1,10 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
+import SqdNavbar from "../components/sqdNavbar";
 export default function Dashboard() {
   return (
     <>
+      <SqdNavbar />
       <Typography variant="h4">Welcome back</Typography>
       <Container
         sx={{

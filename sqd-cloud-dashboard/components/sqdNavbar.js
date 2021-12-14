@@ -5,12 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import Image from "next/image";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -34,28 +35,29 @@ const SqdNavbar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: "transparent", backgroundImage:"none"}}>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: "transparent", backgroundImage: "none" }}
+    >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            LOGO
+            <Image
+              src="/images/sqdLogo.svg"
+              alt="Squaredev Logo"
+              width={40}
+              height={40}
+            />
+            Ana
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-            </IconButton>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}>
+            <NotificationsIcon />
           </Box>
           <Typography
             variant="h6"
@@ -63,9 +65,14 @@ const SqdNavbar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            LOGO
+            <Image
+              src="/images/sqdLogo.svg"
+              alt="Squaredev Logo"
+              width={40}
+              height={40}
+            />
+            Ana
           </Typography>
-          
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
