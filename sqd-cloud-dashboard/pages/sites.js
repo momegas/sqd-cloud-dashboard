@@ -1,9 +1,8 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
-export default function Dashboard() {
+import { Box, Button, Container, Typography } from "@mui/material";
+export default function Sites() {
   return (
     <>
-      <Typography variant="h4">Welcome back</Typography>
       <Container
         sx={{
           backgroundColor: "#3A557F",
@@ -14,7 +13,10 @@ export default function Dashboard() {
           padding: "28px",
         }}
       >
-        Dashboard
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="h5">Sites</Typography>
+          <Button variant="contained">New Site</Button>
+        </Box>
       </Container>
     </>
   );
