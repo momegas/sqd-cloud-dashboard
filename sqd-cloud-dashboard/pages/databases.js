@@ -1,18 +1,22 @@
+import { Container, Typography } from "@mui/material";
 import React from "react";
-import SqdContainer from "../components/sqdContainer";
 
 export default function Databases() {
   return (
-    <SqdContainer
-      sx={{
-        backgroundColor: "#3A557F",
-        width: "90%",
-        borderRadius: "12px",
-        minHeight: "100px",
-        margin: "0 auto",
-      }}
-    >
-      Databases
-    </SqdContainer>
+    <>
+      <Typography variant="h5">Create a database cluster</Typography>
+      <Container
+        sx={{
+          width: "100%",
+          backgroundColor: "#3A557F",
+          borderRadius: "12px",
+          minHeight: "100px",
+          margin: "32px auto",
+          padding: "28px",
+        }}
+      >
+        Databases
+      </Container>
+    </>
   );
 }
