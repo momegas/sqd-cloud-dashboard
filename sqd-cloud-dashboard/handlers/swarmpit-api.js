@@ -43,7 +43,7 @@ export const createSwarmpitStack = nc().use(
     const { name } = req.body;
     const { data } = await createStack(token, name);
 
-    res.send('done');
+    res.send(JSON.stringify('done'));
   },
 );
 

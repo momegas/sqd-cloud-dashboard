@@ -12,8 +12,8 @@ export default function createWordpress() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.wordpressname.value;
-    if (name && !isLoading) {
-      const createWPResponse = await createWp(name).unwrap();
+    const createWPResponse = await createWp(name).unwrap();
+    if (createWPResponse) {
       router.push('/wordpress');
     }
   };
@@ -105,6 +105,7 @@ export default function createWordpress() {
             type="submit"
             fullWidth
             variant="outlined"
+            disabled={isLoading}
             sx={{
               padding: '10px',
               marginBottom: '40px',
