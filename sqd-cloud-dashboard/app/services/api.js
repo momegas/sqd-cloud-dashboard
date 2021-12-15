@@ -35,6 +35,14 @@ export const api = createApi({
     me: builder.mutation({
       query: () => ({ url: 'auth/current-user', method: 'GET' }),
     }),
+
+    createWP: builder.mutation({
+      query: (name) => ({
+        url: 'http://localhost:3000/api/swarmpit/stacks/create',
+        method: 'POST',
+        body: { name },
+      }),
+    }),
   }),
 });
 
@@ -116,4 +124,9 @@ export const {
   useConnectAccountMutation,
 } = ofsApi;
 
-export const { useLoginMutation, useSignupMutation, useMeMutation } = api;
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useMeMutation,
+  useCreateWPMutation,
+} = api;
