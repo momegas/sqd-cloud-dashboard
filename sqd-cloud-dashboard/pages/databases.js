@@ -1,5 +1,6 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
+import Image from "next/image";
 import React from "react";
 
 export default function Databases() {
@@ -12,64 +13,121 @@ export default function Databases() {
         margin: "32px auto",
         width: "100%",
         padding: "28px",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Typography
         variant="h5"
         sx={{
-          marginBottom: "40px",
+          paddingTop: "16px",
+          paddingLeft: "12px",
         }}
       >
         Create database cluster
       </Typography>
-      <Box
+      <Container
         sx={{
+          width: "98%",
           display: "flex",
+          flexDirection: "column",
         }}
       >
-        <Box
+        <Typography
+          variant="h6"
           sx={{
-            minHeight: "150px",
-            width: "200px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "20px",
-            border: "1px solid #CFD9F7",
-            cursor: "pointer",
+            padding: "20px 0",
           }}
         >
-          PostgreSQL
-        </Box>
+          Choose database engine
+        </Typography>
         <Box
           sx={{
-            minHeight: "150px",
-            width: "200px",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "20px",
-            border: "1px solid #CFD9F7",
-            cursor: "pointer",
           }}
         >
-          MySQL
+          <Box
+            sx={{
+              minHeight: "150px",
+              width: "200px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "20px",
+              border: "1px solid #CFD9F7",
+              cursor: "pointer",
+            }}
+          >
+            <Image src={"/images/postgresql.svg"} width={50} height={50} />
+            <Typography variant="subtitle1" marginTop={"8px"}>
+              PostgreSQL
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              minHeight: "150px",
+              width: "200px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "20px",
+              border: "1px solid #CFD9F7",
+              cursor: "pointer",
+            }}
+          >
+            <Image src={"/images/mysql.svg"} width={50} height={50} />
+            <Typography variant="subtitle1" marginTop={"8px"}>
+              MySQL
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              minHeight: "150px",
+              width: "200px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "20px",
+              border: "1px solid #CFD9F7",
+              cursor: "pointer",
+            }}
+          >
+            <Image src={"/images/redis.svg"} width={50} height={50} />
+            <Typography variant="subtitle1" marginTop={"8px"}>
+              Redis
+            </Typography>
+          </Box>
         </Box>
-        <Box
+        <Typography
+          variant="h6"
           sx={{
-            minHeight: "150px",
-            width: "200px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "20px",
-            border: "1px solid #CFD9F7",
-            cursor: "pointer",
+            paddingTop: "24px",
+            paddingBottom: "16px",
           }}
         >
-          Redis
-        </Box>
-      </Box>
+          Choose database cluster name
+        </Typography>
+        <TextField
+          variant="outlined"
+          sx={{
+            padding: "0",
+            marginBottom: "40px",
+            width: "40%",
+          }}
+        />
+        <Button
+          variant="contained"
+          sx={{
+            padding: "10px",
+            marginBottom: "40px",
+          }}
+        >
+          Create database cluster
+        </Button>
+      </Container>
     </Container>
   );
 }
