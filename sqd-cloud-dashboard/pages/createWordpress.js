@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
+import { Layout } from '../components/layout';
 import { Box } from '@mui/system';
 import Image from 'next/image';
 import { useCreateWPMutation } from '../app/services/api';
@@ -19,7 +20,8 @@ export default function createWordpress() {
   };
 
   return (
-    <Container
+    <Layout>
+      {/* <Container
       sx={{
         backgroundColor: '#3A557F',
         borderRadius: '12px',
@@ -30,7 +32,7 @@ export default function createWordpress() {
         display: 'flex',
         flexDirection: 'column',
       }}
-    >
+    > */}
       <Typography
         variant="h5"
         sx={{
@@ -47,6 +49,15 @@ export default function createWordpress() {
           flexDirection: 'column',
         }}
       >
+        <Typography
+          variant="h5"
+          // sx={{
+          //   paddingTop: "16px",
+          //   paddingLeft: "12px",
+          // }}
+        >
+          New Wordpress Site
+        </Typography>
         <Box
           sx={{
             display: 'flex',
@@ -115,6 +126,6 @@ export default function createWordpress() {
           </Button>
         </Box>
       </Container>
-    </Container>
+    </Layout>
   );
 }
