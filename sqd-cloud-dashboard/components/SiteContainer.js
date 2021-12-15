@@ -1,4 +1,5 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import Image from "next/image";
 import React from "react";
 
 export default function SiteContainer() {
@@ -17,9 +18,45 @@ export default function SiteContainer() {
           backgroundColor: "#09172A",
           borderRadius: "8px",
           minHeight: "100px",
+          padding: "16px",
+          border: "1px solid #A4ACC4",
         }}
       >
-        Hello
+        <Typography variant="body">react-sticky-notes</Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{
+            paddingTop: "8px",
+            paddingBottom: "16px",
+          }}
+        >
+          react-sticky-notes-seven.sqdcloud.app
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          <Image src={"/images/sticky-notes.png"} width={180} height={100} />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              marginLeft: "20px",
+            }}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{
+                marginRight: "6px",
+              }}
+            >
+              Deploys from
+            </Typography>
+            <Image src={"/images/github.png"} width={16} height={16} />
+          </Box>
+        </Box>
       </Box>
     </Grid>
   );

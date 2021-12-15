@@ -15,7 +15,6 @@ import Image from "next/image";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-
 const SqdNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
