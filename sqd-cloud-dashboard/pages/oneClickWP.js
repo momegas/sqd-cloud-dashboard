@@ -2,6 +2,24 @@ import Head from "next/head";
 import Button from "@mui/material/Button";
 import * as React from "react";
 
+const axios = require("axios").default;
+
+const handleOneClickWP = () => {
+  axios({
+    method: "get",
+    url: "https://httpbin.org/ip",
+    data: {
+      domainName: "Fred",
+      sthElse: "Flintstone",
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 export default function OneClickWP() {
   return (
@@ -13,7 +31,9 @@ export default function OneClickWP() {
       </Head>
       <body>
         <div>
-          <Button variant="contained">Create WordPress VS</Button>
+          <Button variant="contained" onClick={handleOneClickWP}>
+            Create WordPress VS
+          </Button>
         </div>
       </body>
     </div>
