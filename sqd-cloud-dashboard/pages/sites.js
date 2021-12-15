@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography, Grid } from "@mui/material";
+import SiteContainer from "../components/SiteContainer";
+
 export default function Sites() {
   return (
     <>
@@ -14,9 +16,29 @@ export default function Sites() {
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="h5">Sites</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              flex: 1,
+              marginRight: "24px",
+              paddingBottom: "10px",
+              borderBottom: "1px solid #A4ACC4",
+              marginBottom: "20px",
+            }}
+          >
+            Sites
+          </Typography>
           <Button variant="contained">New Site</Button>
         </Box>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          <SiteContainer />
+          <SiteContainer />
+          <SiteContainer />
+        </Grid>
       </Container>
     </>
   );
