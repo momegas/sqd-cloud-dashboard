@@ -101,9 +101,9 @@ const SqdNavbar = () => {
         </Toolbar>
       </Container>
       <Container maxWidth="xl" >
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } , justifyContent: "space-between"}}>
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } , justifyContent: "space-evenly" ,paddingBottom:"10px"}}>
         {pages.map((page) => (
-          <Box key={page}>
+          <Box key={page} sx={{display:"flex", alignSelf: "left"}}>
             <Typography textAlign="left">{page}</Typography>
           </Box>
         ))}</Box>
