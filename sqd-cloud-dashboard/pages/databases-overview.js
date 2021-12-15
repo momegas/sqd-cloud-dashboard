@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import { Layout } from '../components/layout';
+import SiteContainer from '../components/SiteContainer';
+import DatabaseContainer from '../components/DatabaseContainer';
 
 export default function Dashboard() {
   return (
@@ -19,7 +21,19 @@ export default function Dashboard() {
             Databases
           </Typography>
           <Button variant="contained">New database</Button>
-        </Box>{' '}
+        </Box>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          sx={{
+            padding: '38px 0',
+          }}>
+          <DatabaseContainer />
+          <DatabaseContainer />
+          <DatabaseContainer />
+          <DatabaseContainer />
+          <DatabaseContainer />
+        </Grid>
       </Layout>{' '}
     </>
   );
