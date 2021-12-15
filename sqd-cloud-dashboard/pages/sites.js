@@ -23,7 +23,6 @@ export default function Sites() {
               marginRight: "24px",
               paddingBottom: "10px",
               borderBottom: "1px solid #A4ACC4",
-              marginBottom: "20px",
             }}
           >
             Sites
@@ -33,7 +32,9 @@ export default function Sites() {
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{
+            paddingTop: "38px",
+          }}
         >
           <SiteContainer />
           <SiteContainer />
