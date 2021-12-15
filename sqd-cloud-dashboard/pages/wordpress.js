@@ -21,59 +21,50 @@ import React from "react";
 import { Box, Button, Container, Typography, Grid } from "@mui/material";
 import SiteContainer from "../components/SiteContainer";
 import Link from "next/link";
+import { Layout } from "../components/layout";
 
 export default function Wordpress() {
   return (
-    <>
-      <Container
+    <Layout>
+      <Box
         sx={{
-          backgroundColor: "#3A557F",
-          borderRadius: "12px",
-          margin: "32px auto",
-          width: "100%",
-          padding: "28px",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
-        <Box
+        <Typography
+          variant="h5"
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
+            flex: 1,
+            marginRight: "24px",
+            paddingBottom: "10px",
+            borderBottom: "1px solid #A4ACC4",
           }}
         >
-          <Typography
-            variant="h5"
-            sx={{
-              flex: 1,
-              marginRight: "24px",
-              paddingBottom: "10px",
-              borderBottom: "1px solid #A4ACC4",
-            }}
+          1-click Apps
+        </Typography>
+        <Link href="/createWordpress" passHref>
+          <Button
+            size="large"
+            type="submit"
+            variant="contained"
+            // sx={{ mt: 3, mb: 2 }}
           >
-            1-click Apps
-          </Typography>
-          <Link href="/createWordpress" passHref>
-            <Button
-              size="large"
-              type="submit"
-              variant="contained"
-              // sx={{ mt: 3, mb: 2 }}
-            >
-              Create wordpress site
-            </Button>
-          </Link>
-        </Box>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          sx={{
-            padding: "38px 0",
-          }}
-        >
-          <SiteContainer />
-          <SiteContainer />
-          <SiteContainer />
-        </Grid>
-      </Container>
-    </>
+            Create wordpress site
+          </Button>
+        </Link>
+      </Box>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        sx={{
+          padding: "38px 0",
+        }}
+      >
+        <SiteContainer />
+        <SiteContainer />
+        <SiteContainer />
+      </Grid>
+    </Layout>
   );
 }

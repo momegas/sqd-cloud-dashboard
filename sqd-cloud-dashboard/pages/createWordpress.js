@@ -2,30 +2,11 @@ import React from "react";
 import { Container, Typography, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
+import { Layout } from "../components/layout";
 
 export default function createWordpress() {
   return (
-    <Container
-      sx={{
-        backgroundColor: "#3A557F",
-        borderRadius: "12px",
-        minHeight: "100px",
-        margin: "32px auto",
-        width: "100%",
-        padding: "28px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Typography
-        variant="h5"
-        sx={{
-          paddingTop: "16px",
-          paddingLeft: "12px",
-        }}
-      >
-        New Wordpress Site
-      </Typography>
+    <Layout>
       <Container
         sx={{
           width: "98%",
@@ -33,6 +14,15 @@ export default function createWordpress() {
           flexDirection: "column",
         }}
       >
+        <Typography
+          variant="h5"
+          // sx={{
+          //   paddingTop: "16px",
+          //   paddingLeft: "12px",
+          // }}
+        >
+          New Wordpress Site
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -89,6 +79,6 @@ export default function createWordpress() {
           Create Wordpress Site
         </Button>
       </Container>
-    </Container>
+    </Layout>
   );
 }
