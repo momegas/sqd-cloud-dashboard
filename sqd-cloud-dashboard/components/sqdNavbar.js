@@ -8,13 +8,13 @@ import Menu from "@mui/material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
+import Badge from "@mui/material/Badge";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
+const pages = ["Overview", "Sites", "Apps", "Databases", "Settings"];
 
 const SqdNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,15 +38,24 @@ const SqdNavbar = () => {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "transparent", backgroundImage: "none" }}
+      sx={{
+        backgroundColor: "transparent",
+        backgroundImage: "none",
+        boxShadow: "none",
+      }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ borderBottom: 1 , marginBottom:"10px"}}>
         <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "flex" },
+              display: "flex",
+              alignItems: "center",
+            }}
           >
             <Image
               src="/images/sqdLogo.svg"
@@ -54,28 +63,13 @@ const SqdNavbar = () => {
               width={40}
               height={40}
             />
-            Ana
+            <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+              Ana
+            </Typography>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}>
-            <NotificationsIcon />
-          </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            <Image
-              src="/images/sqdLogo.svg"
-              alt="Squaredev Logo"
-              width={40}
-              height={40}
-            />
-            Ana
-          </Typography>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+            <NotificationsIcon sx={{ marginRight: "10px" }} />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -105,6 +99,14 @@ const SqdNavbar = () => {
             </Menu>
           </Box>
         </Toolbar>
+      </Container>
+      <Container maxWidth="xl" >
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } , justifyContent: "space-between"}}>
+        {pages.map((page) => (
+          <Box key={page}>
+            <Typography textAlign="left">{page}</Typography>
+          </Box>
+        ))}</Box>
       </Container>
     </AppBar>
   );
