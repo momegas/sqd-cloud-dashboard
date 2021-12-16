@@ -41,6 +41,20 @@ export const getSwarmpitStacks = nc().use(
   },
 );
 
+export const getSwarmpitStacksByApps = nc().use(
+  authenticateUser(),
+  async (req, res) => {
+    const token = await getAccessToken();
+    const { data } = await getStacks(token);
+    const apps = req.query.slug[2];
+
+    const stacks = data.filter((stack) =>
+      stack.services.find((service) => service.repository.name === apps),
+    );
+    res.send(stacks);
+  },
+);
+
 export const createSwarmpitStack = nc().use(
   authenticateUser(),
   async (req, res) => {

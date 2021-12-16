@@ -6,6 +6,7 @@ import {
   createSwarmpitStack,
   deleteSwarmpitStackByName,
   getSwarmpitStacks,
+  getSwarmpitStacksByApps,
 } from '../../handlers/swarmpit-api';
 
 export const v1 = createHandler()
@@ -13,6 +14,7 @@ export const v1 = createHandler()
   .post('/auth/access-token', accessToken)
   .get('/auth/current-user', currentUser)
   .get('/swarmpit/stacks', getSwarmpitStacks)
+  .get('/swarmpit/stacks/:apps', getSwarmpitStacksByApps)
   .post('/swarmpit/stacks/create', createSwarmpitStack)
   .delete('/swarmpit/stacks/delete', deleteSwarmpitStackByName);
 

@@ -43,6 +43,13 @@ export const api = createApi({
         body: stackInfo,
       }),
     }),
+
+    getStacksByType: builder.mutation({
+      query: (apps) => ({
+        url: `http://localhost:3000/api/swarmpit/stacks/${apps}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -129,4 +136,5 @@ export const {
   useSignupMutation,
   useMeMutation,
   useCreateWPMutation,
+  useGetStacksByTypeMutation,
 } = api;

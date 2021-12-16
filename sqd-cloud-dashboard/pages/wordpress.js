@@ -17,28 +17,41 @@
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import { Alert } from "@mui/material";
 
-import React from "react";
-import { Box, Button, Container, Typography, Grid } from "@mui/material";
-import SiteContainer from "../components/SiteContainer";
-import Link from "next/link";
-import { Layout } from "../components/layout";
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Container, Typography, Grid } from '@mui/material';
+import SiteContainer from '../components/SiteContainer';
+import Link from 'next/link';
+import { Layout } from '../components/layout';
+import { useGetStacksByTypeMutation } from '../app/services/api';
 
 export default function Wordpress() {
+  const [getStack, { isLoading }] = useGetStacksByTypeMutation();
+  const [wpStacks, setWpStacks] = useState([]);
+
+  console.log(wpStacks);
+
+  useEffect(async () => {
+    const getStacksResponse = await getStack('wordpress').unwrap();
+    if (getStacksResponse) {
+      setWpStacks(getStacksResponse);
+    }
+  }, []);
+
   return (
     <Layout>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         <Typography
           variant="h5"
           sx={{
             flex: 1,
-            marginRight: "24px",
-            paddingBottom: "10px",
-            borderBottom: "1px solid #A4ACC4",
+            marginRight: '24px',
+            paddingBottom: '10px',
+            borderBottom: '1px solid #A4ACC4',
           }}
         >
           1-click Apps
@@ -58,12 +71,10 @@ export default function Wordpress() {
         container
         spacing={{ xs: 2, md: 3 }}
         sx={{
-          padding: "38px 0",
+          padding: '38px 0',
         }}
       >
-        <SiteContainer />
-        <SiteContainer />
-        <SiteContainer />
+        {wpStacks && wpStacks.map((wpStack, i) => <SiteContainer key={i} />)}
       </Grid>
     </Layout>
   );
