@@ -1,50 +1,41 @@
 import React from "react";
 import { Box, Button, Container, Typography, Grid } from "@mui/material";
 import SiteContainer from "../components/SiteContainer";
+import { Layout } from "../components/layout";
 
 export default function Sites() {
   return (
-    <>
-      <Container
+    <Layout>
+      <Box
         sx={{
-          backgroundColor: "#3A557F",
-          borderRadius: "12px",
-          margin: "32px auto",
-          width: "100%",
-          padding: "28px",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
-        <Box
+        <Typography
+          variant="h5"
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
+            flex: 1,
+            marginRight: "24px",
+            paddingBottom: "10px",
+            borderBottom: "1px solid #A4ACC4",
           }}
         >
-          <Typography
-            variant="h5"
-            sx={{
-              flex: 1,
-              marginRight: "24px",
-              paddingBottom: "10px",
-              borderBottom: "1px solid #A4ACC4",
-            }}
-          >
-            Sites
-          </Typography>
-          <Button variant="contained">New Site</Button>
-        </Box>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          sx={{
-            padding: "38px 0",
-          }}
-        >
-          <SiteContainer />
-          <SiteContainer />
-          <SiteContainer />
-        </Grid>
-      </Container>
-    </>
+          Sites
+        </Typography>
+        <Button variant="contained">New Site</Button>
+      </Box>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        sx={{
+          padding: "38px 0",
+        }}
+      >
+        <SiteContainer />
+        <SiteContainer />
+        <SiteContainer />
+      </Grid>
+    </Layout>
   );
 }

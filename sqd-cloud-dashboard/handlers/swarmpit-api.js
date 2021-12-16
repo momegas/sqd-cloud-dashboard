@@ -7,6 +7,11 @@ const wpStack = fs.readFileSync('./stacks/wp-compose.yaml');
 
 const randomPort = Math.floor(Math.random() * 999) + 8001;
 
+const stack = {
+  ['wp']: wpStack.toString().replace('{{PORT}}', randomPort),
+  ['db']: '',
+};
+
 export const config = {
   baseUrl: 'https://swarmpit.squaredev.io',
   auth: {
@@ -18,10 +23,10 @@ export const config = {
   headers: (token) => ({
     headers: { Authorization: token },
   }),
-  stack: (name) => ({
+  stack: (name, type) => ({
     name,
     spec: {
-      compose: wpStack.toString().replace('{{PORT}}', randomPort),
+      compose: stack[type],
     },
   }),
 };
@@ -40,10 +45,10 @@ export const createSwarmpitStack = nc().use(
   authenticateUser(),
   async (req, res) => {
     const token = await getAccessToken();
-    const { name } = req.body;
-    const { data } = await createStack(token, name);
+    const { name, type } = req.body;
+    const { data } = await createStack(token, name, type);
 
-    res.send('done');
+    res.send(JSON.stringify('done'));
   },
 );
 
@@ -71,10 +76,10 @@ export const getStacks = async (token) => {
 };
 
 // Service - Create stack
-export const createStack = async (token, name) => {
+export const createStack = async (token, name, type) => {
   return await axios.post(
     `${config.baseUrl}/api/stacks`,
-    config.stack(name),
+    config.stack(name, type),
     config.headers(token),
   );
 };
