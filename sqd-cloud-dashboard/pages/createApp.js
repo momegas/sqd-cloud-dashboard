@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useCreateWPMutation } from "../app/services/api";
 import { useRouter } from "next/router";
 
-export default function createWordpress() {
+export default function createApp() {
   const router = useRouter();
   const [createWp, { isLoading }] = useCreateWPMutation();
 
