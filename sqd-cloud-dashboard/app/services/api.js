@@ -37,10 +37,10 @@ export const api = createApi({
     }),
 
     createWP: builder.mutation({
-      query: (name) => ({
+      query: (stackInfo) => ({
         url: 'http://localhost:3000/api/swarmpit/stacks/create',
         method: 'POST',
-        body: { name },
+        body: stackInfo,
       }),
     }),
   }),
