@@ -69,8 +69,8 @@ export default function Wordpress() {
         {apps &&
           apps.map((app, i) => (
             <SiteContainer
-              appStack={app}
-              onDeleteApp={handleDeleteAppClick}
+              stack={app}
+              onDelete={handleDeleteAppClick}
               key={i}
             />
           ))}
