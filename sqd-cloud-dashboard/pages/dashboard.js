@@ -13,7 +13,7 @@ export default function Dashboard() {
   const [databases, setDatabases] = useState([]);
   const [apps, setApps] = useState([]);
 
-  const [getApps, { isLoading }] = useGetStacksByTypeMutation();
+  const [getStack, { isLoading }] = useGetStacksByTypeMutation();
   const [deleteApp, { isDeleting }] = useDeleteStackByNameMutation();
 
   const handleDeleteAppClick = async (name) => {
@@ -23,10 +23,35 @@ export default function Dashboard() {
     }
   };
 
+  const handleDeleteDbClick = async (name) => {
+    const deleteDatabaseResponse = await deleteApp(name).unwrap();
+    if (deleteDatabaseResponse) {
+      setDatabases((app) => app.filter((a) => a.stackName !== name));
+    }
+  };
+
   useEffect(async () => {
-    const getAppsResponse = await getApps(['wordpress']).unwrap();
-    if (getAppsResponse) {
-      setApps(getAppsResponse);
+    const getStacksResponse = await getStack([
+      'wordpress',
+      'mongo',
+      'postgres',
+    ]).unwrap();
+    if (getStacksResponse) {
+      const appsStack = getStacksResponse.filter((stack) =>
+        stack.services.find((service) =>
+          ['wordpress'].includes(service.repository.name),
+        ),
+      );
+
+      setApps(appsStack);
+
+      const databasesStacks = getStacksResponse.filter((stack) =>
+        stack.services.find((service) =>
+          ['mongo', 'postgres'].includes(service.repository.name),
+        ),
+      );
+
+      setDatabases(databasesStacks);
     }
   }, []);
 
@@ -107,7 +132,11 @@ export default function Dashboard() {
           >
             {databases &&
               databases.map((database, i) => (
-                <SiteContainer stack={database} onDelete={() => {}} key={i} />
+                <SiteContainer
+                  stack={database}
+                  onDelete={handleDeleteDbClick}
+                  key={i}
+                />
               ))}
           </Grid>
           <Typography
