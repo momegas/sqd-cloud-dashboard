@@ -20,6 +20,7 @@ export default function SiteContainer() {
           minHeight: "100px",
           padding: "16px",
           border: "1px solid #A4ACC4",
+          cursor: "pointer",
         }}
       >
         <Typography variant="body">react-sticky-notes</Typography>
