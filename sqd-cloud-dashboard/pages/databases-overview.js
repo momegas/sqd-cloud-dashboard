@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { Layout } from '../components/layout';
 import SiteContainer from '../components/SiteContainer';
 import DatabaseContainer from '../components/DatabaseContainer';
+import Link from 'next/link';
 
 export default function Dashboard() {
   return (
@@ -20,7 +21,16 @@ export default function Dashboard() {
             }}>
             Databases
           </Typography>
-          <Button variant="contained">New database</Button>
+          <Link href="/create-database" passHref>
+            <Button
+              size="large"
+              type="submit"
+              variant="contained"
+              // sx={{ mt: 3, mb: 2 }}
+            >
+              Create database
+            </Button>
+          </Link>
         </Box>
         <Grid
           container
