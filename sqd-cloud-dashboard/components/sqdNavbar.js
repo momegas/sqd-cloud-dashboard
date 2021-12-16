@@ -13,17 +13,23 @@ import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-const pages = ["Overview", "Sites", "Apps", "Databases", "Settings"];
+const contents = [
+  { page: "Overview", url: "/databases" },
+  { page: "Sites", url: "/sites" },
+  { page: "Apps", url: "/" },
+  { page: "Databases", url: "/databases-overview" },
+  { page: "Settings", url: "/" },
+];
+//const pages = ["Overview", "Sites", "Apps", "Databases", "Settings"];
+//const links = ["/databases", "/sites", "/", "/databases-overview", "/"];
 
 const SqdNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -110,11 +116,34 @@ const SqdNavbar = () => {
             paddingBottom: "10px",
           }}
         >
-          {pages.map((page) => (
+          {contents.map(({ page, url }) => (
             <Box key={page} sx={{ display: "flex", alignSelf: "left" }}>
-              <Button variant="text">
+              <Button
+                variant="text"
+                sx={{
+                  textTransform: "Capitalize",
+                  ":hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
                 {" "}
-                <Typography textAlign="left" >{page}</Typography>
+                <Typography component="h6">
+                  <Link
+                    href={url}
+                    underline="none"
+                    variant="inherit"
+                    sx={{
+                      color: "text.secondary",
+                      ":hover": {
+                        color: "text.primary",
+                        backgroundColor: "transparent",
+                      },
+                    }}
+                  >
+                    {page}
+                  </Link>
+                </Typography>
               </Button>
             </Box>
           ))}
