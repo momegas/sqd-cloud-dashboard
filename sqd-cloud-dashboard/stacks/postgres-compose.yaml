@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - '{{PORT}}:5432'
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    networks:
+      - default
+    logging:
+      driver: json-file
+networks:
+  default:
+    driver: overlay
+
+volumes:
+  database-data:

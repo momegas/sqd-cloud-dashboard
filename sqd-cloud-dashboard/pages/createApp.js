@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Container,
   Typography,
@@ -6,12 +6,12 @@ import {
   Button,
   Tabs,
   Tab,
-} from "@mui/material";
-import { Layout } from "../components/layout";
-import { Box } from "@mui/system";
-import Image from "next/image";
-import { useCreateWPMutation } from "../app/services/api";
-import { useRouter } from "next/router";
+} from '@mui/material';
+import { Layout } from '../components/layout';
+import { Box } from '@mui/system';
+import Image from 'next/image';
+import { useCreateWPMutation } from '../app/services/api';
+import { useRouter } from 'next/router';
 
 export default function createApp() {
   const router = useRouter();
@@ -20,9 +20,9 @@ export default function createApp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.wordpressname.value;
-    const createWPResponse = await createWp(name).unwrap();
+    const createWPResponse = await createWp({ name, type: 'wp' }).unwrap();
     if (createWPResponse) {
-      router.push("/wordpress");
+      router.push('/wordpress');
     }
   };
 
@@ -48,34 +48,34 @@ export default function createApp() {
         <Typography
           variant="h5"
           sx={{
-            paddingTop: "16px",
+            paddingTop: '16px',
           }}
         >
           New Wordpress Site
         </Typography>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            marginTop: "30px",
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '30px',
           }}
         >
           <Box
             sx={{
-              backgroundColor: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "60px",
-              height: "60px",
-              opacity: "0.8",
+              backgroundColor: '#fff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '60px',
+              height: '60px',
+              opacity: '0.8',
             }}
           >
-            <Image src={"/images/wordpress.svg"} width={50} height={50} />
+            <Image src={'/images/wordpress.svg'} width={50} height={50} />
           </Box>
           <Box
             sx={{
-              marginLeft: "10px",
+              marginLeft: '10px',
             }}
           >
             <Typography variant="h6">WordPress</Typography>
@@ -85,8 +85,8 @@ export default function createApp() {
         <Typography
           variant="h6"
           sx={{
-            paddingTop: "24px",
-            paddingBottom: "16px",
+            paddingTop: '24px',
+            paddingBottom: '16px',
           }}
         >
           Choose site name
@@ -101,9 +101,9 @@ export default function createApp() {
             autoFocus
             variant="outlined"
             sx={{
-              padding: "0",
-              marginBottom: "40px",
-              width: "40%",
+              padding: '0',
+              marginBottom: '40px',
+              width: '40%',
             }}
           />
           <Button
@@ -113,8 +113,8 @@ export default function createApp() {
             variant="contained"
             disabled={isLoading}
             sx={{
-              padding: "10px",
-              marginBottom: "40px",
+              padding: '10px',
+              marginBottom: '40px',
             }}
           >
             Create wordpress site

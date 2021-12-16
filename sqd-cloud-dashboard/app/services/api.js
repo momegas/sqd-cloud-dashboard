@@ -44,9 +44,20 @@ export const api = createApi({
       }),
     }),
 
+    deleteStackByName: builder.mutation({
+      query: (name) => ({
+        url: 'http://localhost:3000/api/swarmpit/stacks/delete',
+        method: 'DELETE',
+        body: { name },
+      }),
+    }),
+
     getStacksByType: builder.mutation({
       query: (apps) => ({
-        url: `http://localhost:3000/api/swarmpit/stacks/${apps}`,
+        url: `http://localhost:3000/api/swarmpit/stacks/${apps.reduce(
+          (curr, prev, i) => (i == 0 ? prev : curr + '+' + prev),
+          '',
+        )}`,
         method: 'GET',
       }),
     }),
@@ -137,4 +148,5 @@ export const {
   useMeMutation,
   useCreateWPMutation,
   useGetStacksByTypeMutation,
+  useDeleteStackByNameMutation,
 } = api;

@@ -4,16 +4,23 @@ import { authenticateUser } from '../app/services/apiUtils';
 import axios from 'axios';
 
 const wpStack = fs.readFileSync('./stacks/wp-compose.yaml');
-
-const randomPort = Math.floor(Math.random() * 999) + 8001;
+const postgres = fs.readFileSync('./stacks/postgres-compose.yaml');
+const mongo = fs.readFileSync('./stacks/mongo-compose.yaml');
 
 const stack = {
-  ['wp']: wpStack.toString().replace('{{PORT}}', randomPort),
-  ['db']: '',
+  ['wp']: wpStack
+    .toString()
+    .replace('{{PORT}}', Math.floor(Math.random() * 999) + 8001),
+  ['postgres']: postgres
+    .toString()
+    .replace('{{PORT}}', Math.floor(Math.random() * 999) + 8001),
+  ['mongo']: mongo
+    .toString()
+    .replace('{{PORT}}', Math.floor(Math.random() * 999) + 8001),
 };
 
 export const config = {
-  baseUrl: 'https://swarmpit.squaredev.io',
+  baseUrl: 'https://cluster.squaredev.io',
   auth: {
     auth: {
       username: 'admin',
@@ -46,10 +53,10 @@ export const getSwarmpitStacksByApps = nc().use(
   async (req, res) => {
     const token = await getAccessToken();
     const { data } = await getStacks(token);
-    const apps = req.query.slug[2];
+    const apps = req.query.slug[2].split('+');
 
     const stacks = data.filter((stack) =>
-      stack.services.find((service) => service.repository.name === apps),
+      stack.services.find((service) => apps.includes(service.repository.name)),
     );
     res.send(stacks);
   },
@@ -72,7 +79,7 @@ export const deleteSwarmpitStackByName = nc().use(
     const token = await getAccessToken();
     const { name } = req.body;
     const { data } = await deleteStackByName(token, name);
-    res.send(data);
+    res.send(JSON.stringify('done'));
   },
 );
 
