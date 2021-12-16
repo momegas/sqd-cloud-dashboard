@@ -5,8 +5,8 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function SiteContainer({
-  appStack: { stackName, services },
-  onDeleteApp,
+  stack: { stackName, services },
+  onDelete,
 }) {
   const appName = stackName;
   const appPort = services[0].ports[0].hostPort;
@@ -32,7 +32,7 @@ export default function SiteContainer({
           cursor: 'pointer',
         }}
       >
-        <IconButton aria-label="delete" onClick={() => onDeleteApp(appName)}>
+        <IconButton aria-label="delete" onClick={() => onDelete(appName)}>
           <DeleteIcon />
         </IconButton>
 
