@@ -2,37 +2,26 @@ import { Container, Typography, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 import React from "react";
+import { Layout } from "../components/layout";
 
 export default function Databases() {
   return (
-    <Container
-      sx={{
-        backgroundColor: "#3A557F",
-        borderRadius: "12px",
-        minHeight: "100px",
-        margin: "32px auto",
-        width: "100%",
-        padding: "28px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Typography
-        variant="h5"
-        sx={{
-          paddingTop: "16px",
-          paddingLeft: "12px",
-        }}
-      >
-        Create database cluster
-      </Typography>
+    <Layout>
       <Container
         sx={{
-          width: "98%",
           display: "flex",
           flexDirection: "column",
         }}
       >
+        <Typography
+          variant="h5"
+          sx={{
+            paddingTop: "16px",
+          }}
+        >
+          Create database cluster
+        </Typography>
+
         <Typography
           variant="h6"
           sx={{
@@ -128,6 +117,6 @@ export default function Databases() {
           Create database cluster
         </Button>
       </Container>
-    </Container>
+    </Layout>
   );
 }

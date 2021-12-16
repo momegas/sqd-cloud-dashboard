@@ -15,7 +15,7 @@ export const Layout = ({ children }) => (
           minHeight: "100px",
           margin: "32px 0px",
           width: "100%",
-          padding: "38px 15px",
+          padding: "38px",
         }}
       >
         {children}
