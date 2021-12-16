@@ -110,7 +110,7 @@ export default function createApp() {
             size="large"
             type="submit"
             fullWidth
-            variant="outlined"
+            variant="contained"
             disabled={isLoading}
             sx={{
               padding: "10px",
