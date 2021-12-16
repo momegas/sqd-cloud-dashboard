@@ -38,7 +38,7 @@ export default function SiteContainer() {
             alignItems: "flex-end",
           }}
         >
-          <Image src={"/images/sticky-notes.png"} width={180} height={100} />
+          <Image src={"/images/sticky-notes.png"} width={160} height={90} />
           <Box
             sx={{
               display: "flex",
