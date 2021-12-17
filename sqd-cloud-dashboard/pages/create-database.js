@@ -15,7 +15,7 @@ export default function Databases() {
     },
     {
       type: "postgres",
-      readable: "PostGres",
+      readable: "Postgres",
       logo: "/images/postgresql.svg",
     },
   ];
