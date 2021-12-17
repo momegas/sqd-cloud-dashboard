@@ -19,7 +19,7 @@ const settings = ["Profile", "Account", "Logout"];
 const contents = [
   { page: "Overview", url: "/dashboard" },
   { page: "Sites", url: "/sites" },
-  { page: "Apps", url: "/wordpress" },
+  { page: "Apps", url: "/apps-overview" },
   { page: "Databases", url: "/databases-overview" },
   { page: "Settings", url: "/" },
 ];

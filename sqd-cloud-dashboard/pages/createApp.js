@@ -22,7 +22,7 @@ export default function createApp() {
     const name = e.target.wordpressname.value;
     const createWPResponse = await createWp({ name, type: 'wp' }).unwrap();
     if (createWPResponse) {
-      router.push('/wordpress');
+      router.push('/apps-overview');
     }
   };
 
