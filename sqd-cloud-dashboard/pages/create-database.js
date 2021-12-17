@@ -1,22 +1,22 @@
-import { Container, Typography, TextField, Button } from '@mui/material';
-import { Box } from '@mui/system';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import { useCreateWPMutation } from '../app/services/api';
-import { Layout } from '../components/layout';
+import { Container, Typography, TextField, Button } from "@mui/material";
+import { Box } from "@mui/system";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useCreateWPMutation } from "../app/services/api";
+import { Layout } from "../components/layout";
 
 export default function Databases() {
   const dbs = [
     {
-      type: 'mongo',
-      readable: 'MongoDB',
-      logo: '/images/mongo.svg',
+      type: "mongo",
+      readable: "MongoDB",
+      logo: "/images/mongo.svg",
     },
     {
-      type: 'postgres',
-      readable: 'PostGres',
-      logo: '/images/postgresql.svg',
+      type: "postgres",
+      readable: "PostGres",
+      logo: "/images/postgresql.svg",
     },
   ];
 
@@ -24,14 +24,17 @@ export default function Databases() {
 
   const [createDb, { isLoading }] = useCreateWPMutation();
 
-  const [selectedDb, updateSelectedDb] = useState('mongo');
+  const [selectedDb, updateSelectedDb] = useState("mongo");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.dbname.value;
-    const createWPResponse = await createDb({ name, type: selectedDb }).unwrap();
+    const createWPResponse = await createDb({
+      name,
+      type: selectedDb,
+    }).unwrap();
     if (createWPResponse) {
-      router.push('/database-overview');
+      router.push("/databases-overview");
     }
   };
 
@@ -39,44 +42,52 @@ export default function Databases() {
     <Layout>
       <Container
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}>
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
-            paddingTop: '16px',
-          }}>
+            paddingTop: "16px",
+          }}
+        >
           Create database cluster
         </Typography>
 
         <Typography
           variant="h6"
           sx={{
-            padding: '20px 0',
-          }}>
+            padding: "20px 0",
+          }}
+        >
           Choose database engine
         </Typography>
         <Box
           sx={{
-            display: 'flex',
-          }}>
+            display: "flex",
+          }}
+        >
           {dbs.map((db) => (
             <Box
               onClick={() => updateSelectedDb(db.type)}
               sx={{
-                minHeight: '150px',
-                width: '200px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginRight: '20px',
-                border: selectedDb == db.type ? '1px solid #0EBAFD' : '1px solid #CFD9F7',
-                cursor: 'pointer',
-              }}>
+                minHeight: "150px",
+                width: "200px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginRight: "20px",
+                border:
+                  selectedDb == db.type
+                    ? "1px solid #0EBAFD"
+                    : "1px solid #CFD9F7",
+                cursor: "pointer",
+              }}
+            >
               <Image src={db.logo} width={50} height={50} />
-              <Typography variant="subtitle1" marginTop={'8px'}>
+              <Typography variant="subtitle1" marginTop={"8px"}>
                 {db.readable}
               </Typography>
             </Box>
@@ -86,9 +97,10 @@ export default function Databases() {
           <Typography
             variant="h6"
             sx={{
-              paddingTop: '24px',
-              paddingBottom: '16px',
-            }}>
+              paddingTop: "24px",
+              paddingBottom: "16px",
+            }}
+          >
             Choose database cluster name {selectedDb}
           </Typography>
           <TextField
@@ -96,9 +108,9 @@ export default function Databases() {
             name="dbname"
             variant="outlined"
             sx={{
-              padding: '0',
-              marginBottom: '40px',
-              width: '40%',
+              padding: "0",
+              marginBottom: "40px",
+              width: "40%",
             }}
           />
           <Button
@@ -108,9 +120,10 @@ export default function Databases() {
             variant="contained"
             disabled={isLoading}
             sx={{
-              padding: '10px',
-              marginBottom: '40px',
-            }}>
+              padding: "10px",
+              marginBottom: "40px",
+            }}
+          >
             Create database
           </Button>
         </Box>
