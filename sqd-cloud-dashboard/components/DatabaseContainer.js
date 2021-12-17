@@ -1,9 +1,10 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function DatabaseContainer() {
+export default function DatabaseContainer({ db, onDelete }) {
+  console.log(db);
   return (
     <Grid
       item
@@ -21,14 +22,17 @@ export default function DatabaseContainer() {
           padding: '16px',
           border: '1px solid #A4ACC4',
         }}>
-        <Typography variant="body">MongoDB</Typography>
+        <Typography variant="body">{db.stackName}</Typography>
+        <IconButton aria-label="delete" onClick={() => onDelete(db.stackName)}>
+          <DeleteIcon />
+        </IconButton>
         <Typography
           variant="subtitle2"
           sx={{
             paddingTop: '8px',
             paddingBottom: '16px',
           }}>
-          mongodb://mongodb0.example.com:27017
+          Here comes the connection string and password ?
         </Typography>
         <Box
           sx={{
