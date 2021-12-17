@@ -4,6 +4,15 @@ import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function DatabaseContainer({ db, onDelete }) {
+  const stackName = db.stackName;
+  const stackType =
+    db.services[0]?.repository?.name || db.services[1]?.repository?.name;
+
+  const [databaseName, databasepass, databaseUser] =
+    db.services[0]?.variables || db.services[1]?.variables;
+
+  const appPort =
+    db.services[0]?.ports[0]?.hostPort || db.services[1]?.ports[0]?.hostPort;
   console.log(db);
   return (
     <Grid
@@ -13,7 +22,8 @@ export default function DatabaseContainer({ db, onDelete }) {
       md={4}
       sx={{
         padding: 0,
-      }}>
+      }}
+    >
       <Box
         sx={{
           backgroundColor: '#09172A',
@@ -21,9 +31,10 @@ export default function DatabaseContainer({ db, onDelete }) {
           minHeight: '100px',
           padding: '16px',
           border: '1px solid #A4ACC4',
-        }}>
-        <Typography variant="body">{db.stackName}</Typography>
-        <IconButton aria-label="delete" onClick={() => onDelete(db.stackName)}>
+        }}
+      >
+        <Typography variant="body">{stackName}</Typography>
+        <IconButton aria-label="delete" onClick={() => onDelete(stackName)}>
           <DeleteIcon />
         </IconButton>
         <Typography
@@ -31,16 +42,26 @@ export default function DatabaseContainer({ db, onDelete }) {
           sx={{
             paddingTop: '8px',
             paddingBottom: '16px',
-          }}>
-          Here comes the connection string and password ?
+          }}
+        >
+          {`${databaseName?.value}, ${databasepass?.value}, ${databaseUser?.value}, port:${appPort}`}
         </Typography>
         <Box
           sx={{
             display: 'flex',
             alignItems: 'flex-end',
             width: '100%',
-          }}>
-          <Image src={'/images/postgresql.svg'} width={180} height={100} />
+          }}
+        >
+          <Image
+            src={
+              stackType === 'postgres'
+                ? '/images/postgresql.svg'
+                : '/images/mongo.svg'
+            }
+            width={180}
+            height={100}
+          />
         </Box>
       </Box>
     </Grid>

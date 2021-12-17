@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import SiteContainer from '../components/SiteContainer';
+import AppContainer from '../components/AppContainer';
 import DatabaseContainer from '../components/DatabaseContainer';
 import SqdNavbar from '../components/sqdNavbar';
 import {
@@ -160,7 +161,7 @@ export default function Dashboard() {
           >
             {apps &&
               apps.map((app, i) => (
-                <SiteContainer
+                <AppContainer
                   stack={app}
                   onDelete={handleDeleteAppClick}
                   key={i}
