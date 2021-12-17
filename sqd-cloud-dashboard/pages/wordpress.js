@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Container, Typography, Grid } from '@mui/material';
-import SiteContainer from '../components/SiteContainer';
-import Link from 'next/link';
-import { Layout } from '../components/layout';
+import React, { useEffect, useState } from "react";
+import { Box, Button, Container, Typography, Grid } from "@mui/material";
+import AppContainer from "../components/AppContainer";
+import Link from "next/link";
+import { Layout } from "../components/layout";
 import {
   useGetStacksByTypeMutation,
   useDeleteStackByNameMutation,
-} from '../app/services/api';
+} from "../app/services/api";
 
 export default function Wordpress() {
   const [getApps, { isLoading }] = useGetStacksByTypeMutation();
@@ -23,7 +23,7 @@ export default function Wordpress() {
   };
 
   useEffect(async () => {
-    const getAppsResponse = await getApps(['wordpress']).unwrap();
+    const getAppsResponse = await getApps(["wordpress"]).unwrap();
     if (getAppsResponse) {
       setApps(getAppsResponse);
     }
@@ -33,17 +33,17 @@ export default function Wordpress() {
     <Layout>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
         <Typography
           variant="h5"
           sx={{
             flex: 1,
-            marginRight: '24px',
-            paddingBottom: '10px',
-            borderBottom: '1px solid #A4ACC4',
+            marginRight: "24px",
+            paddingBottom: "10px",
+            borderBottom: "1px solid #A4ACC4",
           }}
         >
           1-click Apps
@@ -63,16 +63,12 @@ export default function Wordpress() {
         container
         spacing={{ xs: 2, md: 3 }}
         sx={{
-          padding: '38px 0',
+          padding: "38px 0",
         }}
       >
         {apps &&
           apps.map((app, i) => (
-            <SiteContainer
-              stack={app}
-              onDelete={handleDeleteAppClick}
-              key={i}
-            />
+            <AppContainer stack={app} onDelete={handleDeleteAppClick} key={i} />
           ))}
       </Grid>
     </Layout>
