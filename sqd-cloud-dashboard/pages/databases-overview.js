@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Container, Grid, Typography } from '@mui/material';
-import { Button } from '@mui/material';
-import { Layout } from '../components/layout';
-import SiteContainer from '../components/SiteContainer';
-import DatabaseContainer from '../components/DatabaseContainer';
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import { Layout } from "../components/layout";
+import SiteContainer from "../components/SiteContainer";
+import DatabaseContainer from "../components/DatabaseContainer";
+import Link from "next/link";
 import {
   useDeleteStackByNameMutation,
   useGetStacksByTypeMutation,
-} from '../app/services/api';
+} from "../app/services/api";
 
 export default function Dashboard() {
   const [getDbs, { isLoading }] = useGetStacksByTypeMutation();
@@ -18,12 +18,12 @@ export default function Dashboard() {
   const handleDeleteDb = async (name) => {
     const deleteDbResponse = await deleteDb(name).unwrap();
     if (deleteDbResponse) {
-      setdbs((db) => db.filter((a) => db.stackName !== name));
+      setdbs((db) => db.filter((a) => a.stackName !== name));
     }
   };
 
   useEffect(async () => {
-    const getDbsResponse = await getDbs(['mongo', 'postgres']).unwrap();
+    const getDbsResponse = await getDbs(["mongo", "postgres"]).unwrap();
     if (getDbsResponse) {
       setdbs(getDbsResponse);
     }
@@ -32,14 +32,14 @@ export default function Dashboard() {
   return (
     <>
       <Layout>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
             variant="h5"
             sx={{
               flex: 1,
-              marginRight: '24px',
-              paddingBottom: '10px',
-              borderBottom: '1px solid #A4ACC4',
+              marginRight: "24px",
+              paddingBottom: "10px",
+              borderBottom: "1px solid #A4ACC4",
             }}
           >
             Databases
@@ -59,7 +59,7 @@ export default function Dashboard() {
           container
           spacing={{ xs: 2, md: 3 }}
           sx={{
-            padding: '38px 0',
+            padding: "38px 0",
           }}
         >
           {dbs &&
@@ -67,7 +67,7 @@ export default function Dashboard() {
               <DatabaseContainer key={i} db={db} onDelete={handleDeleteDb} />
             ))}
         </Grid>
-      </Layout>{' '}
+      </Layout>{" "}
     </>
   );
 }
