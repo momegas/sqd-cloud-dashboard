@@ -1,6 +1,7 @@
 import { Container, Typography, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useCreateWPMutation } from '../app/services/api';
 import { Layout } from '../components/layout';
@@ -19,15 +20,16 @@ export default function Databases() {
     },
   ];
 
+  const router = useRouter();
+
   const [createDb, { isLoading }] = useCreateWPMutation();
 
   const [selectedDb, updateSelectedDb] = useState('mongo');
-  const [dbName, updateDbName] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.wordpressname.value;
-    const createWPResponse = await createWp({ name, type: selectedDb }).unwrap();
+    const name = e.target.dbname.value;
+    const createWPResponse = await createDb({ name, type: selectedDb }).unwrap();
     if (createWPResponse) {
       router.push('/database-overview');
     }
@@ -80,36 +82,38 @@ export default function Databases() {
             </Box>
           ))}
         </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            paddingTop: '24px',
-            paddingBottom: '16px',
-          }}>
-          Choose database cluster name {selectedDb}
-        </Typography>
-        <TextField
-          value={dbName}
-          onChange={(e) => updateDbName(e.value)}
-          variant="outlined"
-          sx={{
-            padding: '0',
-            marginBottom: '40px',
-            width: '40%',
-          }}
-        />
-        <Button
-          size="large"
-          type="submit"
-          fullWidth
-          variant="contained"
-          disabled={isLoading}
-          sx={{
-            padding: '10px',
-            marginBottom: '40px',
-          }}>
-          Create database
-        </Button>
+        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+          <Typography
+            variant="h6"
+            sx={{
+              paddingTop: '24px',
+              paddingBottom: '16px',
+            }}>
+            Choose database cluster name {selectedDb}
+          </Typography>
+          <TextField
+            id="dbname"
+            name="dbname"
+            variant="outlined"
+            sx={{
+              padding: '0',
+              marginBottom: '40px',
+              width: '40%',
+            }}
+          />
+          <Button
+            size="large"
+            type="submit"
+            fullWidth
+            variant="contained"
+            disabled={isLoading}
+            sx={{
+              padding: '10px',
+              marginBottom: '40px',
+            }}>
+            Create database
+          </Button>
+        </Box>
       </Container>
     </Layout>
   );
