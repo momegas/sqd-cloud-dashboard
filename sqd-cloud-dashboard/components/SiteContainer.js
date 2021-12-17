@@ -1,16 +1,19 @@
-import { Box, Button, Grid, IconButton, Typography } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Image from 'next/image';
-import React from 'react';
-import Link from 'next/link';
+import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Image from "next/image";
+import React from "react";
+import Link from "next/link";
 
 export default function SiteContainer({
   stack: { stackName, services },
   onDelete,
 }) {
   const appName = stackName;
-  const appPort = services[0]?.ports[0]?.hostPort;
-  const appLink = `http://cluster.squaredev.io:${appPort}`;
+  const appPort =
+    services[0]?.ports[0]?.hostPort || services[1]?.ports[0]?.hostPort;
+  const appLink = `http://cluster1.squaredev.io:${appPort}`;
+
+  console.log(appLink);
 
   return (
     <Grid
@@ -24,12 +27,12 @@ export default function SiteContainer({
     >
       <Box
         sx={{
-          backgroundColor: '#09172A',
-          borderRadius: '8px',
-          minHeight: '100px',
-          padding: '16px',
-          border: '1px solid #A4ACC4',
-          cursor: 'pointer',
+          backgroundColor: "#09172A",
+          borderRadius: "8px",
+          minHeight: "100px",
+          padding: "16px",
+          border: "1px solid #A4ACC4",
+          cursor: "pointer",
         }}
       >
         <IconButton aria-label="delete" onClick={() => onDelete(appName)}>
@@ -37,41 +40,41 @@ export default function SiteContainer({
         </IconButton>
 
         <Typography variant="body">{appName}</Typography>
-        <Link href={appLink} passHref={true}>
+        <a href={appLink} target="_blank">
           <Typography
             variant="subtitle2"
             sx={{
-              paddingTop: '8px',
-              paddingBottom: '16px',
+              paddingTop: "8px",
+              paddingBottom: "16px",
             }}
           >
             {`${appName}.cluster.squaredev.io`}
           </Typography>
-        </Link>
+        </a>
 
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'flex-end',
+            display: "flex",
+            alignItems: "flex-end",
           }}
         >
-          <Image src={'/images/sticky-notes.png'} width={160} height={90} />
+          <Image src={"/images/sticky-notes.png"} width={160} height={90} />
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              marginLeft: '20px',
+              display: "flex",
+              alignItems: "flex-start",
+              marginLeft: "20px",
             }}
           >
             <Typography
               variant="subtitle2"
               sx={{
-                marginRight: '6px',
+                marginRight: "6px",
               }}
             >
               Deploys from
             </Typography>
-            <Image src={'/images/github.png'} width={16} height={16} />
+            <Image src={"/images/github.png"} width={16} height={16} />
           </Box>
         </Box>
       </Box>
