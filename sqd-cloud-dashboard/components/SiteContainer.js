@@ -9,7 +9,7 @@ export default function SiteContainer({
   onDelete,
 }) {
   const appName = stackName;
-  const appPort = services[0].ports[0].hostPort;
+  const appPort = services[0]?.ports[0]?.hostPort;
   const appLink = `http://cluster.squaredev.io:${appPort}`;
 
   return (

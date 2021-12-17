@@ -20,7 +20,7 @@ const stack = {
 };
 
 export const config = {
-  baseUrl: 'https://cluster.squaredev.io',
+  baseUrl: 'http://snf-885788.vm.okeanos.grnet.gr:888',
   auth: {
     auth: {
       username: 'admin',
