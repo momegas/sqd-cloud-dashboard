@@ -44,7 +44,7 @@ export default function SignInSide() {
     const loginResponse = await login(formState).unwrap();
     // save token to local storage for future use
     localStorage.setItem('token', JSON.stringify(loginResponse));
-    router.push('/wordpress');
+    router.push('/dashboard');
   };
 
   return (
