@@ -15,16 +15,14 @@ import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Logout"];
 const contents = [
-  { page: "Overview", url: "/databases" },
+  { page: "Overview", url: "/dashboard" },
   { page: "Sites", url: "/sites" },
   { page: "Apps", url: "/" },
   { page: "Databases", url: "/databases-overview" },
   { page: "Settings", url: "/" },
 ];
-//const pages = ["Overview", "Sites", "Apps", "Databases", "Settings"];
-//const links = ["/databases", "/sites", "/", "/databases-overview", "/"];
 
 const SqdNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
