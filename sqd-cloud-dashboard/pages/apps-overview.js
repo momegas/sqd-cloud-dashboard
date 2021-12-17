@@ -55,7 +55,7 @@ export default function Wordpress() {
             variant="contained"
             // sx={{ mt: 3, mb: 2 }}
           >
-            Create wordpress site
+            Create App
           </Button>
         </Link>
       </Box>
