@@ -5,7 +5,10 @@ import { Layout } from '../components/layout';
 import SiteContainer from '../components/SiteContainer';
 import DatabaseContainer from '../components/DatabaseContainer';
 import Link from 'next/link';
-import { useDeleteStackByNameMutation, useGetStacksByTypeMutation } from '../app/services/api';
+import {
+  useDeleteStackByNameMutation,
+  useGetStacksByTypeMutation,
+} from '../app/services/api';
 
 export default function Dashboard() {
   const [getDbs, { isLoading }] = useGetStacksByTypeMutation();
@@ -20,7 +23,7 @@ export default function Dashboard() {
   };
 
   useEffect(async () => {
-    const getDbsResponse = await getDbs(['mongo']).unwrap();
+    const getDbsResponse = await getDbs(['mongo', 'postgres']).unwrap();
     if (getDbsResponse) {
       setdbs(getDbsResponse);
     }
@@ -37,7 +40,8 @@ export default function Dashboard() {
               marginRight: '24px',
               paddingBottom: '10px',
               borderBottom: '1px solid #A4ACC4',
-            }}>
+            }}
+          >
             Databases
           </Typography>
           <Link href="/create-database" passHref>
@@ -56,8 +60,12 @@ export default function Dashboard() {
           spacing={{ xs: 2, md: 3 }}
           sx={{
             padding: '38px 0',
-          }}>
-          {dbs && dbs.map((db, i) => <DatabaseContainer key={i} db={db} onDelete={handleDeleteDb} />)}
+          }}
+        >
+          {dbs &&
+            dbs.map((db, i) => (
+              <DatabaseContainer key={i} db={db} onDelete={handleDeleteDb} />
+            ))}
         </Grid>
       </Layout>{' '}
     </>

@@ -132,10 +132,10 @@ export default function Dashboard() {
           >
             {databases &&
               databases.map((database, i) => (
-                <SiteContainer
-                  stack={database}
-                  onDelete={handleDeleteDbClick}
+                <DatabaseContainer
                   key={i}
+                  db={database}
+                  onDelete={handleDeleteDbClick}
                 />
               ))}
           </Grid>
